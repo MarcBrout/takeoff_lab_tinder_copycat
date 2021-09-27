@@ -17,10 +17,31 @@ class ProfilesViewModel : ViewModel() {
     val profiles: LiveData<List<ProfileEntity>>
         get() = _profiles
 
+    private val _matchCount = MutableLiveData<Int>()
+    val matchCount: LiveData<Int>
+        get() = _matchCount
+
     fun getProfiles() {
         viewModelScope.launch {
             val resource = repository.getProfiles()
             _profiles.postValue(resource)
+            _matchCount.postValue(resource.count { it.isMatch })
+        }
+    }
+
+    fun like(profileEntity: ProfileEntity) {
+        _profiles.value?.let {
+            val index = it.indexOfFirst { profile -> profile.id == profileEntity.id }
+            it[index].isMatch = true
+            _matchCount.postValue(it.count { profile -> profile.isMatch })
+        }
+    }
+
+    fun dislike(profileEntity: ProfileEntity) {
+        _profiles.value?.let {
+            val index = it.indexOfFirst { profile -> profile.id == profileEntity.id }
+            it[index].isMatch = false
+            _matchCount.postValue(it.count { profile -> profile.isMatch })
         }
     }
 }
