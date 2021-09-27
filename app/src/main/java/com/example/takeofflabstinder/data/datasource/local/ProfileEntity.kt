@@ -22,7 +22,7 @@ fun JSONObject.toProfileEntity() = ProfileEntity(
     photos = run {
         val jsonPhotos = getJSONArray("photos")
         val photos = mutableListOf<String>()
-        for (i in 0..jsonPhotos.length()) {
+        for (i in 0 until jsonPhotos.length()) {
             photos.add(jsonPhotos.getString(i))
         }
         photos

@@ -7,7 +7,7 @@ class LocalDataSource {
     suspend fun getProfiles(): List<ProfileEntity> {
         val jsonProfiles = dataset.getJSONArray("profiles")
         val profiles = mutableListOf<ProfileEntity>()
-        for (i in 0..jsonProfiles.length()) {
+        for (i in 0 until jsonProfiles.length()) {
             profiles.add(jsonProfiles.getJSONObject(i).toProfileEntity())
         }
         return profiles

@@ -48,6 +48,7 @@
                 android:src="@drawable/ic_profiles_match_count"/>
 
             <TextView
+                android:id="@+id/liked_profile_count"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="4"
@@ -64,6 +65,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/profiles_stack_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -80,6 +82,7 @@
         android:paddingEnd="84dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dislike_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -90,7 +93,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:src="@drawable/ic_refuse_background"/>
+                android:src="@drawable/ic_refuse_background"
+                android:elevation="16dp"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -99,7 +103,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:src="@drawable/ic_cross"/>
+                android:src="@drawable/ic_cross"
+                android:elevation="16dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -109,6 +114,7 @@
             android:layout_weight="1"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/like_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -119,7 +125,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:src="@drawable/ic_accept_background"/>
+                android:src="@drawable/ic_accept_background"
+                android:elevation="16dp"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -128,7 +135,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:src="@drawable/ic_tick"/>
+                android:src="@drawable/ic_tick"
+                android:elevation="16dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
