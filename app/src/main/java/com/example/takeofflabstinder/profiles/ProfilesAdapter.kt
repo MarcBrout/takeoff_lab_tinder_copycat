@@ -37,7 +37,7 @@ class ProfilesAdapter(profiles: List<ProfileEntity>) : RecyclerView.Adapter<Prof
 
             Glide.with(binding.photo)
                 .load(profile.photos.first())
-                .fitCenter()
+                .centerCrop()
                 .into(binding.photo)
         }
     }
