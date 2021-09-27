@@ -9,6 +9,7 @@ import com.example.playground.utils.autoCleared
 import com.example.takeofflabstinder.R
 import com.example.takeofflabstinder.databinding.FragmentProfilesBinding
 import com.yuyakaido.android.cardstackview.*
+import com.yuyakaido.android.cardstackview.Direction.*
 
 class ProfilesFragment : Fragment(R.layout.fragment_profiles) {
     private var binding: FragmentProfilesBinding by autoCleared()
@@ -19,10 +20,34 @@ class ProfilesFragment : Fragment(R.layout.fragment_profiles) {
 
         binding = FragmentProfilesBinding.bind(view)
         binding.profilesStackView.apply {
-            layoutManager = CardStackLayoutManager(context).apply {
+            layoutManager = CardStackLayoutManager(context, object : CardStackListener {
+                override fun onCardDragging(direction: Direction?, ratio: Float) {
+                }
+
+                override fun onCardSwiped(direction: Direction?) {
+                    when (direction) {
+                        Left -> profilesViewModel.dislike()
+                        Right -> profilesViewModel.like()
+                    }
+                }
+
+                override fun onCardRewound() {
+                }
+
+                override fun onCardCanceled() {
+                }
+
+                override fun onCardAppeared(view: View?, position: Int) {
+                }
+
+                override fun onCardDisappeared(view: View?, position: Int) {
+                }
+            }
+            ).apply {
                 setStackFrom(StackFrom.Bottom)
                 setVisibleCount(3)
                 setCanScrollVertical(false)
+
             }
 
             adapter = ProfilesAdapter(listOf())
@@ -31,7 +56,7 @@ class ProfilesFragment : Fragment(R.layout.fragment_profiles) {
 
         binding.likeButton.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Right)
+                .setDirection(Right)
                 .setDuration(Duration.Normal.duration)
                 .setInterpolator(AccelerateInterpolator())
                 .build()
@@ -41,7 +66,7 @@ class ProfilesFragment : Fragment(R.layout.fragment_profiles) {
 
         binding.dislikeButton.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Left)
+                .setDirection(Left)
                 .setDuration(Duration.Normal.duration)
                 .setInterpolator(AccelerateInterpolator())
                 .build()
